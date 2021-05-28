@@ -54,22 +54,26 @@ class BankAccount:
                f"{self._person.get_adress().get_city()} (PLZ: {self._person.get_adress().get_postal_code()})"
 
     def get_account_balance(self):
-        return f"Stan konta: {self._account_balance} Pln."
+        return f"{self._account_balance} Pln."
 
     def deposit(self):
         deposit_amount = float(input('Proszę podać ilość środków do wpłaty: '))
         self._account_balance += deposit_amount
         return self._account_balance
 
-    # todo def withdraw(self):
-    # jesli konto ma wystarczajace srodki wyplac i odpal metode  get_account_balance() zeby wypisac ile zostalo
-    # jesli nie ma wystarczajaco srodkow poinformuj ze ma za malo
-    # jesli kwota bedzie zerowala konto zapytaj czy napewno tego chce i konto bedzie wyzerowane i oplaty roczne pojda
-    # w debet a e wentualnie jesli posiada konto oszczednosciowe to tam zajebia, nowa metoda
-    # w sparkonto poinformuj, ze nie mozna wyplacic bez utraty oprocentowania rocznego i narastanie procentu bedzie
-    # sie liczylo od nowa
     def withdraw(self):
-        pass
+        withdraw_amount = float(input('Proszę podać ilość środków do wypłaty: '))
+        if withdraw_amount > self._account_balance:
+            print('Zamało środków na koncie żeby dokonać wypłaty.')
+        elif withdraw_amount == self._account_balance:
+            print('Twoje konto zostanie wyzerowane. Po dokonaniu wypłaty konto będzie puste.')
+            print('Jeśli konto będzie puste między ostatnim tygodniem roku, pierwszym dniem nowego roku,'
+                  ' konto zostanie zamknięte.')
+        elif withdraw_amount < self._account_balance:
+            self._account_balance -= withdraw_amount
+            print(f"Wypłacam: {withdraw_amount}")
+            print(f"Obecny stan konta po wypłacie: {self.get_account_balance()}")
+            return self._account_balance
 
 
 class SavingsAccount(BankAccount):
@@ -82,6 +86,12 @@ class SavingsAccount(BankAccount):
 
     def get_account_balance(self):
         return super().get_account_balance()
+
+    def deposit(self):
+        return super().deposit()
+
+    def withdraw(self):
+        return super().withdraw()
 
 
 adress_adam = Adress('43.a', 'Longstreet', 'Zurich', '8000')
@@ -97,8 +107,10 @@ print(savings_account.get_person())
 print(savings_account.get_account_balance())
 print('\n')
 
-account1.deposit()
-account1.get_account_balance()
+# account1.deposit()
+# account1.get_account_balance()
 
 print(account1.get_person())
 print(account1.get_account_balance())
+
+account1.withdraw()
