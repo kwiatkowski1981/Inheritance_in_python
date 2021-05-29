@@ -48,17 +48,21 @@ class BankAccount:
         self._account_balance = account_balance
 
     def get_person(self):
-        return f"pesel: {self._person.get_pesel()} - {self._person.get_first_name()} {self._person.get_last_name()}," \
-               f" {self._person.get_age()}yo. \n" \
-               f"{self._person.get_adress().get_street()} {self._person.get_adress().get_home_number()}, " \
-               f"{self._person.get_adress().get_city()} (PLZ: {self._person.get_adress().get_postal_code()})"
+        return self._person
+
+    def get_details(self):
+        return f"{self.get_person().get_first_name()} {self.get_person().get_last_name()}," \
+               f" {self.get_person().get_age()}yo. (pesel: {self.get_person().get_pesel()}) \n" \
+               f"{self.get_person().get_adress().get_street()} {self.get_person().get_adress().get_home_number()}," \
+               f" {self.get_person().get_adress().get_city()} (PLZ: {self.get_person().get_adress().get_postal_code()})"
 
     def get_account_balance(self):
-        return f"{self._account_balance} Pln."
+        return self._account_balance
 
     def deposit(self):
         deposit_amount = float(input('Proszę podać ilość środków do wpłaty: '))
         self._account_balance += deposit_amount
+        print(f"Obecny stan konta po wpłacie: {self.get_account_balance()}")
         return self._account_balance
 
     def withdraw(self):
@@ -99,18 +103,16 @@ adam = Person('Adam', 'Nowak', 40, adress_adam, '01018132589')
 
 account1 = BankAccount(adam, 10_000.0)
 
-print(account1.get_person())
+print(account1.get_details())
 print(account1.get_account_balance())
 
 savings_account = SavingsAccount(adam, 500_000.0, 3.5)
-print(savings_account.get_person())
+print(savings_account.get_details())
 print(savings_account.get_account_balance())
 print('\n')
 
-# account1.deposit()
-# account1.get_account_balance()
+print(account1.get_details())
+account1.deposit()
 
-print(account1.get_person())
-print(account1.get_account_balance())
 
-account1.withdraw()
+# account1.withdraw()
