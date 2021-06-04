@@ -9,4 +9,4 @@ with urlopen(f'https://restcountries.eu/rest/v2/name/{country}') as response:
     country_data = data[0]
     print('Stolica', country_data['capital'])
 
-# todo <------------------------------->    its mow working yet
+# todo <------------------------------->    its not working yet
