@@ -11,7 +11,7 @@ class File:
     @staticmethod
     def read_file(filename: str):
         file = open(filename, 'r')
-        return file.readlines()
+        return (line.strip() for line in file.readlines())
 
     @staticmethod
     def file_exists(filename: str):
@@ -23,10 +23,10 @@ file2 = File.read_file('test.txt')
 print(file1)
 print(file2)
 
-for line in file2:
-    print(line.split('\n'))
+for line2 in file2:
+    print(line2.split('\n'))
 
 
-file3 = File.delete_file('test.txt')
+# file3 = File.delete_file('test.txt')
 
 
