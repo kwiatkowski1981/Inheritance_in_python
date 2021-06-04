@@ -6,6 +6,7 @@ class File:
     @staticmethod
     def delete_file(filename: str):
         remove(filename)
+        return print('File no more exist.')
 
     @staticmethod
     def read_file(filename: str):
@@ -24,3 +25,8 @@ print(file2)
 
 for line in file2:
     print(line.split('\n'))
+
+
+file3 = File.delete_file('test.txt')
+
+
