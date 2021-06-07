@@ -1,5 +1,5 @@
 from datetime import datetime
-from exercise_41_1.Saving import Saving
+from lesson_41.exercise_41_1.Saving import Saving
 
 
 class Savings:

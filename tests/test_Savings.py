@@ -1,6 +1,6 @@
 from datetime import datetime
-from exercise_41_1.Saving import Saving
-from exercise_41_1.Savings import Savings
+from lesson_41.exercise_41_1.Saving import Saving
+from lesson_41.exercise_41_1 import Savings
 
 
 def test_add_saving():
